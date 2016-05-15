@@ -8,7 +8,7 @@ const babelEs6 = require('babel-preset-es2015');
 const babelReact = require('babel-preset-react');
 const browserify = require('gulp-browserify');
 
-gulp.task('bundle', ['clean-bundle'], () => {
+gulp.task('default', ['clean-bundle'], () => {
 	return gulp.src('src/js/**.js')
 		.pipe(watch('src/js/**.js', logChanges))
 		.pipe(babel({
@@ -21,7 +21,7 @@ gulp.task('bundle', ['clean-bundle'], () => {
 		.pipe(gulp.dest('dist/js/'));
 });
 
-gulp.task('clean-bundle', () => del('dist/js/*.*', {force: true}))
+gulp.task('clean-bundle', () => del('dist/js/*.*', {force: true}));
 
 function logChanges(file){
 	 console.log('File ' + path.relative(process.cwd(), file.history[0]) + ' was changed');
