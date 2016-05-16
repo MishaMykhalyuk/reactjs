@@ -1,20 +1,24 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-const ValidateInput = React.createClass({
-	getInitialState() {
-		return { valid: false };
-	},
+class ValidateInput extends React.Component {
+	constructor(){
+		super(...arguments);
+
+		this.state = {
+			valid: false
+		};
+	}
 
 	validate(event) {
 		this.setState({ valid: event.target.value.includes('react') });
-	},
+	}
 
 	render() {
 		return (
 			<div>
 				<h2>Validate to 'react' value</h2>
-				<input onChange={this.validate} 
+				<input onChange={this.validate.bind(this)} 
 					style={
 						{
 							background: this.state.valid ? 'green' : 'red',
@@ -26,6 +30,6 @@ const ValidateInput = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
 ReactDOM.render(<ValidateInput />, document.getElementById('app'));
